@@ -8,8 +8,9 @@ import com.balajiprabhu.todo.utils.Routes
 import com.balajiprabhu.todo.utils.TodoListEvent
 import com.balajiprabhu.todo.utils.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,8 +23,9 @@ class TodoListViewModel @Inject constructor(
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
-    var deletedTodo : Todo? = null
+    private var deletedTodo : Todo? = null
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     fun onEvent(event : TodoListEvent) {
         when(event) {
 
@@ -47,9 +49,8 @@ class TodoListViewModel @Inject constructor(
                 viewModelScope.launch {
                     deletedTodo = event.todo
                     todoRepository.deleteTodo(event.todo)
-
                     sendUiEvent(UiEvent.ShowSnackBar(
-                        message = "Todo Deleted",
+                        message = "${event.todo.title} Deleted",
                         action = "Undo"
                     ))
                 }
@@ -60,7 +61,13 @@ class TodoListViewModel @Inject constructor(
                     todoRepository.insertTodo(event.todo.copy(
                         isDone = event.isDone
                     ))
+
+                    todos.mapLatest { list ->
+                        list.filter { it.isDone }
+                    }
                 }
+
+
             }
         }
     }
@@ -70,6 +77,4 @@ class TodoListViewModel @Inject constructor(
             _uiEvent.send(event)
         }
     }
-
-
 }

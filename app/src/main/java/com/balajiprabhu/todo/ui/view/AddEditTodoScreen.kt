@@ -39,8 +39,12 @@ fun AddEditTodoScreen(
     Scaffold(
         scaffoldState = scaffoldState,
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxSize(),
+        topBar = {
+            TopAppBar {
+                Text(text = "Todo")
+            }
+        },
         floatingActionButton = {
             FloatingActionButton(onClick = {
                 viewModel.onEvent(AddEditTodoEvent.OnSaveTodoClick)
@@ -51,11 +55,10 @@ fun AddEditTodoScreen(
                 )
             }
         }
-    ) { contentPadding ->
-
+    ) { _ ->
         Column(
             modifier = Modifier
-                .padding(contentPadding)
+                .padding(all = 4.dp)
                 .fillMaxSize(),
         ) {
             TextField(
@@ -66,7 +69,7 @@ fun AddEditTodoScreen(
                 placeholder = {
                     Text(text = "Title")
                 },
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
@@ -77,7 +80,7 @@ fun AddEditTodoScreen(
                 placeholder = {
                     Text(text = "Description")
                 },
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
                 singleLine = false,
                 maxLines = 5
             )

@@ -1,6 +1,8 @@
 package com.balajiprabhu.todo.data
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.mapLatest
 
 class TodoRepositoryImpl(private val todoDao: TodoDao) : TodoRepository {
 
@@ -16,7 +18,10 @@ class TodoRepositoryImpl(private val todoDao: TodoDao) : TodoRepository {
         return todoDao.getTodoById(id)
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     override fun getTodos(): Flow<List<Todo>> {
-        return todoDao.getTodos()
+        return todoDao.getTodos().mapLatest { list ->
+            list.sortedBy { todo -> todo.isDone }
+        }
     }
 }
