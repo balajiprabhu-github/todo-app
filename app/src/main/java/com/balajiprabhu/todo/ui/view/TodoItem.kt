@@ -26,7 +26,7 @@ fun TodoItem(
     val dividerBackground = if (isSystemInDarkTheme()) Color.LightGray else Color.DarkGray
 
     Row(
-        modifier = modifier.background(itemBackground),
+        modifier = modifier.background(itemBackground).padding(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(

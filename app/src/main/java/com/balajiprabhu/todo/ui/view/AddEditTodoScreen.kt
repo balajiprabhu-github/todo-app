@@ -1,12 +1,14 @@
 package com.balajiprabhu.todo.ui.view
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.balajiprabhu.todo.utils.AddEditTodoEvent
@@ -42,7 +44,10 @@ fun AddEditTodoScreen(
             .fillMaxSize(),
         topBar = {
             TopAppBar {
-                Text(text = "Todo")
+                Text(
+                    text = "Todo",
+                    modifier = Modifier.padding(start=4.dp),
+                )
             }
         },
         floatingActionButton = {
@@ -69,7 +74,8 @@ fun AddEditTodoScreen(
                 placeholder = {
                     Text(text = "Title")
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             )
             Spacer(modifier = Modifier.height(8.dp))
             TextField(
@@ -82,7 +88,8 @@ fun AddEditTodoScreen(
                 },
                 modifier = Modifier.fillMaxWidth(),
                 singleLine = false,
-                maxLines = 5
+                maxLines = 5,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
             )
         }
     }

@@ -10,9 +10,13 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.balajiprabhu.todo.utils.TodoListEvent
 import com.balajiprabhu.todo.utils.UiEvent
@@ -77,6 +81,31 @@ fun TodoListScreen(
             }
         }
     ) { contentPadding ->
+
+        if(todos.value.isEmpty()){
+            Box(modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally){
+
+                    Text(
+                        text = "No Todos",
+                        textAlign = TextAlign.Center,
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    
+                    Spacer(modifier = Modifier.padding(12.dp))
+
+                    Text(
+                        text = "What do you want to get done today? \n Tap the + button to add a Todo",
+                        textAlign = TextAlign.Center
+                    )
+                }
+            }
+        }
+
+        
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
