@@ -66,8 +66,6 @@ class TodoListViewModel @Inject constructor(
                         list.filter { it.isDone }
                     }
                 }
-
-
             }
         }
     }

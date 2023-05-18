@@ -34,7 +34,6 @@ class AddEditTodoViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-
     init {
         handleEditTodo(savesStateHandle)
     }
