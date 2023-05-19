@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.balajiprabhu.todo.data.Todo
 import com.balajiprabhu.todo.data.TodoRepository
-import com.balajiprabhu.todo.utils.AddEditTodoEvent
-import com.balajiprabhu.todo.utils.UiEvent
+import com.balajiprabhu.todo.events.AddEditTodoEvent
+import com.balajiprabhu.todo.events.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -51,7 +51,8 @@ class AddEditTodoViewModel @Inject constructor(
             is AddEditTodoEvent.OnSaveTodoClick -> {
                 viewModelScope.launch {
                     if(title.isBlank()) {
-                        sendUiEvent(UiEvent.ShowSnackBar(
+                        sendUiEvent(
+                            UiEvent.ShowSnackBar(
                             message = "The title cannot be empty",
                         ))
                         return@launch

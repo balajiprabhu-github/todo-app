@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.balajiprabhu.todo.utils.AddEditTodoEvent
-import com.balajiprabhu.todo.utils.UiEvent
+import com.balajiprabhu.todo.events.AddEditTodoEvent
+import com.balajiprabhu.todo.events.UiEvent
 import com.balajiprabhu.todo.viewmodel.AddEditTodoViewModel
 
 @Composable

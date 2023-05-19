@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.balajiprabhu.todo.data.Todo
 import com.balajiprabhu.todo.data.TodoRepository
 import com.balajiprabhu.todo.utils.Routes
-import com.balajiprabhu.todo.utils.TodoListEvent
-import com.balajiprabhu.todo.utils.UiEvent
+import com.balajiprabhu.todo.events.TodoListEvent
+import com.balajiprabhu.todo.events.UiEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
@@ -49,7 +49,8 @@ class TodoListViewModel @Inject constructor(
                 viewModelScope.launch {
                     deletedTodo = event.todo
                     todoRepository.deleteTodo(event.todo)
-                    sendUiEvent(UiEvent.ShowSnackBar(
+                    sendUiEvent(
+                        UiEvent.ShowSnackBar(
                         message = "${event.todo.title} Deleted",
                         action = "Undo"
                     ))

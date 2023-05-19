@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.balajiprabhu.todo.utils.TodoListEvent
-import com.balajiprabhu.todo.utils.UiEvent
+import com.balajiprabhu.todo.events.TodoListEvent
+import com.balajiprabhu.todo.events.UiEvent
 import com.balajiprabhu.todo.viewmodel.TodoListViewModel
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)

@@ -1,4 +1,4 @@
-package com.balajiprabhu.todo.utils
+package com.balajiprabhu.todo.events
 
 import com.balajiprabhu.todo.data.Todo
 

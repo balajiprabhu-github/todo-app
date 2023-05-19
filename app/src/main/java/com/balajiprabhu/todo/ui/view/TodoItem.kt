@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.balajiprabhu.todo.data.Todo
-import com.balajiprabhu.todo.utils.TodoListEvent
+import com.balajiprabhu.todo.events.TodoListEvent
 
 @Composable
 fun TodoItem(
