@@ -6,8 +6,6 @@ This app built using jetpack compose MVVM architecture
 - Repository Pattern
 - Swipe to Delete
 
-
-
 # Screenshots
 
 Home page - Dark & Light
